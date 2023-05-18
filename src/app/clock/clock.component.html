@@ -1,0 +1,46 @@
+
+
+
+  <app-digital-clock></app-digital-clock>
+
+
+  <div class="mb-4 toogle" >
+
+  <mat-slide-toggle (change)="onChangeToogle($event)" id="slideToogle" color="primary">
+    <span [ngClass]="isChecked == true ? 'textWhite' : 'textBlack'" >
+      Dark theme
+    </span>
+  </mat-slide-toggle>
+</div>
+
+<div id="app" >
+  <div id="timeline">
+    <div id="marker" [style.left.%]="markerPosition"></div>
+  </div>
+</div>
+
+
+
+<div class="container mt-4" >
+  <div class="row">
+    <div >
+      <mat-form-field class="container" appearance="fill" >
+        <mat-label>TimeZone</mat-label>
+        <mat-select [(value)]="valorSelecionado">
+          <mat-option (click)="startClock('')" [value]="''">local</mat-option>
+          <mat-optgroup
+            *ngFor="let tz of timeZones"
+            [label]="tz.continent">
+            <mat-option
+              *ngFor="let timezone of tz.newRow"
+              [value]="timezone.tz"
+              (click)="startClock(timezone.tz)">
+              {{ timezone.country.split("_").join(" ") }}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+</div>

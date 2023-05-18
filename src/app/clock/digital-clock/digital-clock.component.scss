@@ -1,0 +1,32 @@
+
+.clock {
+   position: relative;
+  width: 300px;
+   height: 130px;
+    display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 20px solid rgb(20,10,84);
+   border-radius: 5px;
+  box-shadow: inset 0 0 15px black
+                    0 20px 20px rgba(30,10,85,1);
+  font-size: 25px;
+  color: black;
+  text-transform: uppercase;
+}
+
+
+
+.day {
+  font-size: 20px;
+   margin-bottom: 10px;
+  }
+  .time {
+  display: flex;
+  }
+  .ampm {
+  margin-top: 10px;
+  font-size: 12px;
+}

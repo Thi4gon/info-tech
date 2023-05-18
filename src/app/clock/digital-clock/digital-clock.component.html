@@ -1,0 +1,10 @@
+
+<div class="mt-4 mb-4"*ngIf="clickedDate$ | async as date">
+<div class="container clock mt-4" id="clock" >
+  <div class="day">{{date | date:"longDate"}}</div>
+  <div class="time">
+    <div>{{date | date : "hh"}} : {{date | date : "mm"}} : {{date | date : "ss"}}</div>
+    <div class="ampm">{{date | date : "a"}}</div>
+  </div>
+</div>
+</div>
