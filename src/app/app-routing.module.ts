@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
   { path: 'home', component: ClockComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 
 ];
 

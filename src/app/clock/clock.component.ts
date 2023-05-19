@@ -38,7 +38,7 @@ export class ClockComponent implements OnInit {
 
 
   checkPreviusTheme() {
-    const currentTheme = sessionStorage.getItem('currentTheme');
+    const currentTheme = localStorage.getItem('currentTheme');
     if(currentTheme === 'dark'){
         this.isDarkTheme = true;
         this.onChangeToogle({
@@ -57,7 +57,7 @@ export class ClockComponent implements OnInit {
   }
 
   checkPreviusTz() {
-    const currentTz = sessionStorage.getItem('currentTz');
+    const currentTz = localStorage.getItem('currentTz');
     if (currentTz) {
       this.startClock(currentTz);
       this.setPickedValue(currentTz);
@@ -72,11 +72,11 @@ export class ClockComponent implements OnInit {
   }
 
   saveTzStorage(tz: any) {
-    sessionStorage.setItem("currentTz", tz);
+    localStorage.setItem("currentTz", tz);
   }
 
   saveTheme(isDark:string){
-    sessionStorage.setItem("currentTheme", isDark);
+    localStorage.setItem("currentTheme", isDark);
   }
 
   startClock(timeZone: any) {
