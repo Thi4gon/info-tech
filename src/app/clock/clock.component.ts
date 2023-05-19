@@ -2,7 +2,8 @@ import { Component, ElementRef, HostBinding, OnInit, ViewChild } from '@angular/
 
 import { DataUtilsService } from '../shared/utils/data.utils.service';
 import { ComunicationService } from '../shared/services/comunication.service';
-import { OverlayContainer } from '@angular/cdk/overlay';
+
+
 
 @Component({
   selector: 'app-clock',
@@ -23,6 +24,7 @@ export class ClockComponent implements OnInit {
   interval: any;
   currentTimeZone = new Date()
   valorSelecionado: any;
+    isDarkTheme = false;
 
 
   @HostBinding('class') className = ''
@@ -31,10 +33,28 @@ export class ClockComponent implements OnInit {
 
   ngOnInit(): void {
     this.checkPreviusTz();
-
+    this.checkPreviusTheme()
   }
 
 
+  checkPreviusTheme() {
+    const currentTheme = sessionStorage.getItem('currentTheme');
+    if(currentTheme === 'dark'){
+        this.isDarkTheme = true;
+        this.onChangeToogle({
+          checked:true,
+          source:{}
+        })
+        // this.slider.nativeElement.click();
+        return
+      }
+      this.isDarkTheme=false;
+      this.onChangeToogle({
+        checked:false,
+        source:{}
+      })
+      
+  }
 
   checkPreviusTz() {
     const currentTz = sessionStorage.getItem('currentTz');
@@ -53,6 +73,10 @@ export class ClockComponent implements OnInit {
 
   saveTzStorage(tz: any) {
     sessionStorage.setItem("currentTz", tz);
+  }
+
+  saveTheme(isDark:string){
+    sessionStorage.setItem("currentTheme", isDark);
   }
 
   startClock(timeZone: any) {
@@ -131,13 +155,16 @@ export class ClockComponent implements OnInit {
 
 
   onChangeToogle($event: any) {
+console.log($event);
     this.isChecked = $event.checked;
     this.setTheme(this.isChecked);
     if (this.isChecked) {
+      this.saveTheme('dark')
       this.setDarkColor();
-
+      
       return
     }
+    this.saveTheme('light')
     this.setWhiteColor();
   }
 
@@ -148,6 +175,7 @@ export class ClockComponent implements OnInit {
   setDarkColor() {
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
 
+    console.log("veio aqui")
 
     const timeline = document.getElementById('timeline')
     timeline!.style.backgroundColor = '#140a54';

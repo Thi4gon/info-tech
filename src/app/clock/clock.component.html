@@ -4,10 +4,10 @@
   <app-digital-clock></app-digital-clock>
 
 
-  <div class="mb-4 toogle" >
+  <div class="mb-4 toogle" #slider  id="slider" >
 
-  <mat-slide-toggle (change)="onChangeToogle($event)" id="slideToogle" color="primary">
-    <span [ngClass]="isChecked == true ? 'textWhite' : 'textBlack'" >
+  <mat-slide-toggle (change)="onChangeToogle($event)"  color="primary" [checked]="isDarkTheme">
+    <span [ngClass]="isChecked == true ? 'textWhite' : 'textBlack'"  >
       Dark theme
     </span>
   </mat-slide-toggle>

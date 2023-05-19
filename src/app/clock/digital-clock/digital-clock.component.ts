@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { ComunicationService } from '../../shared/services/comunication.service';
 
@@ -13,15 +13,18 @@ export class DigitalClockComponent implements AfterViewInit, OnDestroy {
 
 
   clickedDate$ = this.comunicationService.currentDate$
-
   isDarkMode$ = this.comunicationService.isDarkMode$
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
+
+
   constructor(public comunicationService: ComunicationService){}
 
   ngAfterViewInit(): void {
     this.isDarkMode$.pipe(takeUntil(this.ngUnsubscribe)).subscribe(
       isDarkMode => {
         const clock = document.getElementById('clock')
+
+
         if(isDarkMode){
           if(clock){
             this.setDarkColor(clock);
@@ -46,7 +49,7 @@ export class DigitalClockComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // This aborts all HTTP requests.
+    // This aborts all streams.
     this.ngUnsubscribe.next();
     // This completes the subject properlly.
     this.ngUnsubscribe.complete();
