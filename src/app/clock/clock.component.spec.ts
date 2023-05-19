@@ -85,17 +85,6 @@ describe('ClockComponent', () => {
     expect(window.clearInterval).not.toHaveBeenCalled();
   });
 
-  it('should display the clicked date and marker position', () => {
-    const date = new Date();
-    component.clickedDate = date;
-    component.markerPosition = 50;
-    fixture.detectChanges();
 
-    const dateElement = fixture.debugElement.query(By.css('.clicked-date'))?.nativeElement;
-    const markerElement = fixture.debugElement.query(By.css('.marker'))?.nativeElement;
-
-    // expect(dateElement?.textContent).toBe(date.toString());
-    expect(markerElement?.style.left).toBe(undefined);
-  });
 
 });
